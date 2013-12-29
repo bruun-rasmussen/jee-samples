@@ -1,5 +1,15 @@
 *.class
 
+# IDE Files #
+.classpath
+.project
+.settings
+build
+target
+
+# Maven files #
+maven
+
 # Package Files #
 *.jar
 *.war
