@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-      <groupId>com.jsf.jboss</groupId>
-      <artifactId>j2ee-parent</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+        <groupId>com.jsf.jboss</groupId>
+        <artifactId>j2ee-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>j2ee-ejb</artifactId>
@@ -21,4 +21,30 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <version>3.0.1</version>
+
+                <configuration>
+                    <ejbVersion>2.1</ejbVersion>
+                    <generateClient>true</generateClient>
+                    <clientIncludes>
+                        <clientInclude>**/ejb2/session/*</clientInclude>
+                    </clientIncludes>
+                    <clientExcludes>
+                        <clientExclude>**/*Bean.class</clientExclude>
+                    </clientExcludes>
+
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
