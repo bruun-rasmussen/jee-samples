@@ -28,9 +28,8 @@ public class Ejb2Servlet extends HttpServlet {
         try {
             Properties namingProps = new Properties();
             namingProps.load(Ejb2Servlet.class.getResourceAsStream("/jboss-naming.properties"));
-            Object moduleName = namingProps.get("jboss-module-name");
+            String moduleName = namingProps.getProperty("jboss-module-name");
             moduleContext = (Context)new InitialContext().lookup("java:app/" + moduleName);
-            log("Loading ejbs from " + moduleContext);
         }
         catch (NamingException ex) {
             throw new ServletException(ex);
