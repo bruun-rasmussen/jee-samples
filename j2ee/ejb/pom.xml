@@ -32,6 +32,7 @@
                     <ejbVersion>2.1</ejbVersion>
                     <generateClient>true</generateClient>
                     <clientIncludes>
+                        <clientInclude>**/ejb2/entity/*</clientInclude>
                         <clientInclude>**/ejb2/session/*</clientInclude>
                     </clientIncludes>
                     <clientExcludes>

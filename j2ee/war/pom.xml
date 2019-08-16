@@ -12,4 +12,23 @@
     <artifactId>j2ee-war</artifactId>
     <packaging>war</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>j2ee-ejb</artifactId>
+            <version>${project.version}</version>
+            <classifier>client</classifier>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>6.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </properties>
+
 </project>
