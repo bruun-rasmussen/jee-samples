@@ -13,26 +13,32 @@ import com.jsebfranck.jboss.ejb2.entity.Member;
 import com.jsebfranck.jboss.ejb2.entity.MemberHome;
 import com.jsebfranck.jboss.ejb2.session.HelloWorldEJB;
 import com.jsebfranck.jboss.ejb2.session.HelloWorldEJBHome;
+import java.io.PrintWriter;
 
 @WebServlet("/Ejb2Servlet")
 public class Ejb2Servlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
+  private static final String ctx = "java:global/j2ee-ear-0.0.1-SNAPSHOT/j2ee-ejb-0.0.1-SNAPSHOT/";
+
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    PrintWriter out = response.getWriter();
     try {
       // EJB 2 session
-      HelloWorldEJBHome helloWorldEJBHome = (HelloWorldEJBHome) new InitialContext().lookup("java:global/WarWithEJB2/HelloWorldEJB!com.jsebfranck.jboss.ejb2.session.HelloWorldEJBHome");
+      HelloWorldEJBHome helloWorldEJBHome = (HelloWorldEJBHome) new InitialContext().lookup(ctx + "HelloWorldEJB!com.jsebfranck.jboss.ejb2.session.HelloWorldEJBHome");
       HelloWorldEJB helloWorldEjb = helloWorldEJBHome.create();
-      response.getWriter().println("EJB session test : " + helloWorldEjb.helloWorld());
+      out.println("EJB session test : " + helloWorldEjb.helloWorld());
 
       // EJB 2 entity
-      MemberHome memberHome = (MemberHome) new InitialContext().lookup("java:global/WarWithEJB2/MemberEJB!com.jsebfranck.jboss.ejb2.entity.MemberHome");
+      MemberHome memberHome = (MemberHome) new InitialContext().lookup(ctx + "MemberEJB!com.jsebfranck.jboss.ejb2.entity.MemberHome");
       Member member = memberHome.create(100L, "jsebfranck");
-      response.getWriter().println("EJB entity test : " + member.getId() + " - " + member.getLogin());
-    } catch (Exception e) {
-      throw new RuntimeException(e);
+      out.println("EJB entity test : " + member.getId() + " - " + member.getLogin());
+    }
+    catch (Exception e) {
+      out.println("--------");
+      e.printStackTrace(out);
     }
   }
 }

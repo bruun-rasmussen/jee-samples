@@ -17,7 +17,8 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>j2ee-ejb</artifactId>
             <version>${project.version}</version>
-            <classifier>client</classifier>
+            <type>ejb-client</type>
+            <!-- classifier>client</classifier -->
         </dependency>
         <dependency>
             <groupId>javax</groupId>
