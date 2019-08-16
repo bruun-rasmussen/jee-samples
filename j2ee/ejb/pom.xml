@@ -22,6 +22,13 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -32,7 +39,7 @@
                     <ejbVersion>2.1</ejbVersion>
                     <generateClient>true</generateClient>
                     <clientIncludes>
-                        <clientInclude>**/ejb2/entity/*</clientInclude>
+                        <clientInclude>**/*.properties</clientInclude>
                         <clientInclude>**/ejb2/session/*</clientInclude>
                     </clientIncludes>
                     <clientExcludes>
